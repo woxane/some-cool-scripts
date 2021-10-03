@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+cdls(){
+	cd $1
+	echo $(ls)
+	cd -
+}
