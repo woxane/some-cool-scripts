@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+
+dl-p(){
+	cd ~/.aria2c-package-downloads && #This direcotry is adrres of where i want to download the packages change it to what you want . 
+	sudo pacman -Sp $1 | aria2c -i - && sudo pacman -U $1* && rm -f $1*
+	cd -
+
+}
