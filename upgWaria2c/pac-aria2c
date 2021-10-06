@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+
+
+pacman-upgrade(){
+cd ~/.pacman-aria2c-upgrade && # your directory that all files downlaod in here (They delete after installing)
+	sudo pacman -Spyu | awk '/:\// {print}' | aria2c -i - && sudo pacman -U * && rm *	
+	cd -
+
+}
