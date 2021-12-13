@@ -1,0 +1,28 @@
+#!/usr/bin/python3
+
+import os 
+import pyttsx3
+import requests
+import asyncio
+
+async def main() : 
+    password = "" # put your password in here (root password)
+    os.system(f"echo {password} | sudo -S systemctl run tor") #run the tor for the first time that system is boot
+    while True : 
+        port = 9050 #put your tor port in here 
+        proxy = {'http' : f'socks5h://127.0.0.1:{port}',
+                'https' : f'socks5h://127.0.0.1:{port}'}
+        previous_ip = requests.get("http://ident.me" , proxies=proxy).text
+        
+        engine = pyttsx3.init()
+        engine.setProperty('rate', 120)
+        engine.say("your ipy is changing") # dont laugh to ipy XD
+        engine.runAndWait()
+        engine.stop()
+        
+        os.system(f"echo {password} | sudo -S systemctl restart tor")
+        current_ip = requests.get("https://ident.me" , proxies=proxy).text
+        os.system(f"notify-send 'ip changed' 'Your ip has changed from {previous_ip} to {current_ip}'")
+        await asyncio.sleep(600) 
+
+asyncio.run(main())
