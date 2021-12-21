@@ -7,7 +7,7 @@ import asyncio
 
 async def main() : 
     password = "" # put your password in here (root password)
-    os.system(f"echo {password} | sudo -S systemctl run tor") #run the tor for the first time that system is boot
+    os.system(f"echo {password} | sudo -S systemctl start tor") #run the tor for the first time that system is boot
     while True : 
         port = 9050 #put your tor port in here 
         proxy = {'http' : f'socks5h://127.0.0.1:{port}',
