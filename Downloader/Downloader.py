@@ -75,7 +75,7 @@ class Main :
 
     def Help(self) : 
         print('''
-                Usage : downloader URL [OPTIONS] 
+                Usage : downloader [OPTIONS] URL
 
                 Options : 
                     General Options :
