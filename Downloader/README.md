@@ -23,4 +23,4 @@ This following command gives you links that have 720.x265 and S01 in their links
 
 	./downloader.py -f=720.x265,S01 url=https://www.sermovie3.online/series/60bd24a49af58d2b7f8efbbf
 
-![gif1](screenshots/output.gif)
+![gif1](screenshots/test1.gif)
