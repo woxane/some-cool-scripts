@@ -11,8 +11,10 @@ from bs4 import BeautifulSoup
     
 class Main : 
     def __init__(self) : 
-        self.Url = argv[1] 
-    
+        self.FlagCheck()
+        self.PrintLinks()
+        self.Download()
+
     def Clear(self) :
         system('clear') 
 
@@ -22,7 +24,7 @@ class Main :
 
 
     def Request(self) : 
-        Req = requests.get(self.Url) 
+        Req = requests.get(self.Url)  
         Soup = BeautifulSoup(Req.text , 'html.parser') 
         self.RequestCheck(Req.status_code) 
 
@@ -37,6 +39,10 @@ class Main :
     
     def FlagCheck(self) : 
         for arg in argv[1:] :
+            if 'url' in arg : 
+                self.Url = arg[arg.find('=') + 1 :]
+                self.Request()
+
             if '-f' in arg : 
                 Keywords = arg[arg.find('=') + 1 : ].split(',') # Convert '-f=1080,foo,boo' to ['1080' , 'foo' , 'boo'] 
                 self.Filter(Keywords)
@@ -75,7 +81,7 @@ class Main :
 
     def Help(self) : 
         print('''
-                Usage : downloader [OPTIONS] URL
+                Usage : downloader [OPTIONS] url=[URL]
 
                 Options : 
                     General Options :
@@ -83,3 +89,6 @@ class Main :
                     -f                                              Filter the output with your options ''') 
 
 
+if __name__ == '__main__' : 
+    Main = Main()   
+    Main
