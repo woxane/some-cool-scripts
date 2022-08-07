@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 
 import requests
+from sys import argv
 from tqdm import tqdm 
-from os import path , system , listdir
 from bs4 import BeautifulSoup 
-
+from os import path , system , listdir
 
 
 
     
 class Main : 
-    def __init__(self) : 
+    def __init__(self) :  
+        self.Clear()
         self.FlagCheck()
         self.PrintLinks()
         self.Download()
@@ -30,6 +31,9 @@ class Main :
 
         self.Links = list(filter(lambda Link : 'dl' in str(Link) , [Link_.get('href') for Link_ in Soup.find_all('a')])) # If this piece is unclear for you just get over it :)
 
+        if self.Keywords :  # if self.Keywords have any element
+            self.Filter(self.Keywords) 
+
     def RequestCheck(self , StatusCode) : # Check if the request status code is 200 or not  
         if StatusCode == 200 : 
             pass
@@ -41,15 +45,14 @@ class Main :
         for arg in argv[1:] :
             if 'url' in arg : 
                 self.Url = arg[arg.find('=') + 1 :]
-                self.Request()
 
             if '-f' in arg : 
-                Keywords = arg[arg.find('=') + 1 : ].split(',') # Convert '-f=1080,foo,boo' to ['1080' , 'foo' , 'boo'] 
-                self.Filter(Keywords)
+                self.Keywords = arg[arg.find('=') + 1 : ].split(',') # Convert '-f=1080,foo,boo' to ['1080' , 'foo' , 'boo'] 
 
             elif '-h' in arg : 
                 self.Help() 
-
+        
+        self.Request()
 
 
 
