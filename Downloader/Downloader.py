@@ -16,11 +16,9 @@ class Main :
     def Clear(self) :
         system('clear') 
 
-    def Filter(self) : 
-        Index = argv.index('-f')
-        for i in range(Index + 1 , len(argv)) : 
-            Filter = argv[i] 
-            self.Links = list(filter(lambda Link : Filter in str(Link) , self.Links)) 
+    def Filter(self , Keywords) : 
+        for Keyword in Keywords : 
+            self.Links = list(filter(lambda Link : Keyword in str(Link) , self.Links)) 
 
 
     def Request(self) : 
@@ -37,12 +35,18 @@ class Main :
         else : 
             print('An unknown Error Has Accoured !')
     
-    def OptionCheck(self) : 
-        if '-f' in argv : 
-            self.Filter() 
+    def FlagCheck(self) : 
+        for arg in argv[1:] :
+            if '-f' in arg : 
+                Keywords = arg[arg.find('=') + 1 : ].split(',') # Convert '-f=1080,foo,boo' to ['1080' , 'foo' , 'boo'] 
+                self.Filter(Keywords)
 
-        elif '-h' in argv : 
-            self.Help()
+            elif '-h' in arg : 
+                self.Help() 
+
+
+
+
 
 
     def PrintLinks(self) : 
