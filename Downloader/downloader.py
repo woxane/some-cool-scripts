@@ -42,6 +42,7 @@ class Main :
             print('An unknown Error Has Accoured !')
     
     def FlagCheck(self) : 
+        self.Keywords = []
         for arg in argv[1:] :
             if 'url' in arg : 
                 self.Url = arg[arg.find('=') + 1 :]
@@ -53,9 +54,6 @@ class Main :
                 self.Help() 
         
         self.Request()
-
-
-
 
 
     def PrintLinks(self) : 
