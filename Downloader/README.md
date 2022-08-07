@@ -12,7 +12,7 @@ Second , run the script and pass the link  :
 	
 	./downloader.py url=https://www.sermovie3.online/series/60bd24a49af58d2b7f8efbbf
 
-![screenshot1](some-cool-scripts/Downloader/screenshots/1.png)
+![screenshot1](screenshots/1.png)
 
 And press Enter . 
 
