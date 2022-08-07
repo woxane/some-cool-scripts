@@ -2,7 +2,7 @@
 
 import requests
 from tqdm import tqdm 
-from os import path , system
+from os import path , system , listdir
 from bs4 import BeautifulSoup 
 
 
@@ -50,17 +50,23 @@ class Main :
 
     def Download(self) : 
         input("start ? : ")
+        ListDir = os.listdir()
+
         for Link in self.Links : 
-
             FileName = path.basename(Link)
-            Responce = requests.get(Link , stream = True ) 
-            FileSize = int(Responce.headers.get("Content-Length", 0))
-            Progress = tqdm(url_response.iter_content(1024), f"Downloading {file_name}", total=file_size, unit="B", unit_scale=True, unit_divisor=1024)
 
-            with open(FileName, "wb") as File : 
-                for Data in Progress.iterable : 
-                    File.write(Data) 
-                    Progress.update(len(data))
+            if FileName in ListDir : 
+                print('This file has been already downloaded . ') 
+
+            else : 
+                Responce = requests.get(Link , stream = True ) 
+                FileSize = int(Responce.headers.get("Content-Length", 0))
+                Progress = tqdm(url_response.iter_content(1024), f"Downloading {file_name}", total=file_size, unit="B", unit_scale=True, unit_divisor=1024)
+
+                with open(FileName, "wb") as File : 
+                    for Data in Progress.iterable : 
+                        File.write(Data) 
+                        Progress.update(len(data))
 
 
     def Help(self) : 
