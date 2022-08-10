@@ -1,14 +1,36 @@
 #!/usr/bin/python3
 
-import subprocess
-import os 
+from os import listdir , rename
 
-files = subprocess.check_output(["ls"]).decode().splitlines()
 
-mkv = [i[:-4] for i in files if i[-3:] == "mkv"]
-srt = [i[:-4] for i in files if i[-3:] == "srt"]
+class Main : 
+    def __init__(self , VidExt , SubExt)  :
+        self.VidExt = VidExt
+        self.SubExt = SubExt 
+    
+    
+    def GetFiles(self) :   
+        FilesList = listdir()
+        self.Videos = [Vid[ : Vid.find] for Vid in FilesList if Vid[Vid.find('.') : ] == self.VidExt]
+        self.Subtitle = [Sub for Sub in FilesList if Sub[Sub.find('.') : ] == self.SubExt ] 
 
-for i in range(0,len(mkv)) :
-    print(srt[i])
-    print(mkv[i])
-    os.rename(srt[i]+".srt", mkv[i]+".srt")
+   
+   def Rename(self) : 
+        for i in range(len(self.Videos)) :  
+            Sub = self.Subtitle[i] 
+            Vid = self.Videos[i] 
+            print(Vid) 
+            print(Sub)
+            rename(Sub+'.'+self.SubExt , Vid+'.'+self.SubExt)
+
+    
+
+    def Help(self) : 
+        print('There is fucking help doc hihi ha :) ') 
+
+
+
+if __name__ == "__main__" : 
+    VidExt = input('Enter your video extension (WIHTOUT DOT) : ')
+    SubExt = input('Enter your subtitle extension (WIHTOUT DOT) : ')
+    Main = Main(VidExt , SubExt) 
