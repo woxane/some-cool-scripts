@@ -7,13 +7,15 @@ class Main :
     def __init__(self , VidExt , SubExt)  :
         self.VidExt = VidExt
         self.SubExt = SubExt 
-    
+        self.GetFiles() 
     
     def GetFiles(self) :   
         FilesList = listdir()
         self.Videos = [Vid[ : Vid.find] for Vid in FilesList if Vid[Vid.find('.') : ] == self.VidExt]
         self.Subtitle = [Sub for Sub in FilesList if Sub[Sub.find('.') : ] == self.SubExt ] 
 
+        if self.Video : 
+            self.Rename()
    
    def Rename(self) : 
         for i in range(len(self.Videos)) :  
