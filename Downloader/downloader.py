@@ -13,8 +13,6 @@ class Main :
     def __init__(self) :  
         self.Clear()
         self.FlagCheck()
-        self.PrintLinks()
-        self.Download()
 
     def Clear(self) :
         system('clear') 
@@ -34,6 +32,8 @@ class Main :
         if self.Keywords :  # if self.Keywords have any element
             self.Filter(self.Keywords) 
 
+        self.PrintLinks() 
+
     def RequestCheck(self , StatusCode) : # Check if the request status code is 200 or not  
         if StatusCode == 200 : 
             pass
@@ -52,12 +52,14 @@ class Main :
 
             elif '-h' in arg : 
                 self.Help() 
+                return 
         
         self.Request()
 
 
     def PrintLinks(self) : 
         print('\n'.join(self.Links))
+        self.Download() 
 
     def Download(self) : 
         input("start ? : ")
