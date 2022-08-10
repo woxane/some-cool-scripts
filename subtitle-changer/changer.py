@@ -31,8 +31,9 @@ class Main :
     
 
     def Help(self) : 
-        print('There is not fucking help doc hihi ha :) ') 
-
+        print(''' 
+                Usage : ./changer VideoExtention SubtitleExtention''')
+        
 
 
 if __name__ == "__main__" : 
